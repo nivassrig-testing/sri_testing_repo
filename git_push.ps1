@@ -35,6 +35,15 @@ Invoke-Expression "$gitCmd remote remove origin"
 Invoke-Expression "$gitCmd remote add origin https://github.com/nivassrig-testing/sri_testing_repo.git"
 
 Write-Host "Pushing to GitHub..."
-Invoke-Expression "$gitCmd push -u origin main"
+# Attempt simple push
+$pushOutput = Invoke-Expression "$gitCmd push -u origin main 2>&1"
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Push rejected. Remote may contain files (like README). Attempting to pull and rebase..." -ForegroundColor Yellow
+    Invoke-Expression "$gitCmd pull origin main --rebase"
+    Invoke-Expression "$gitCmd push -u origin main"
+}
+else {
+    Write-Host $pushOutput
+}
 
 Write-Host "Deployment Complete."
