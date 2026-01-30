@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.L.A.S.T. / Tester</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <h1>B.L.A.S.T.</h1>
+                <span class="tag">TESTER</span>
+            </div>
+            <nav>
+                <a href="#" class="active">Generator</a>
+                <a href="#">History</a>
+                <a href="#">Settings</a>
+            </nav>
+            <div class="status">
+                <span class="indicator online"></span> System Active
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header>
+                <h2>Test Case Generator</h2>
+                <div class="model-badge">
+                    <span>Model:</span> <strong>Llama 3.2</strong>
+                </div>
+            </header>
+
+            <div class="chat-container" id="chatContainer">
+                <div class="message system">
+                    <div class="avatar">AI</div>
+                    <div class="bubble">
+                        <p>Hello! I am your QA Automation Assistant. describe a feature or paste a snippet, and I'll generate test cases for you.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <textarea id="userInput" placeholder="Describe the feature to test (e.g. Login page with 2FA)..."></textarea>
+                <button id="sendBtn" onclick="sendMessage()">
+                    Generate
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
