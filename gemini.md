@@ -1,46 +1,36 @@
-# Project Constitution (gemini.md)
+# Project Constitution (Gemini)
 
 ## Data Schemas
 
-### Core Payload: Test Case Generation
-**Input (Prompt Request):**
+### Core Payload
+**Input Object (User Request):**
 ```json
 {
-  "user_input": "string",  // The scenario, requirements, or code snippet from the user
-  "model": "llama3.2"      // Fixed model requirement
+  "user_input": "string", // The description or code snippet provided by the user
+  "model": "llama3.2"     // Default model
 }
 ```
 
-**Output (Structured Test Cases):**
+**Output Object (System Response):**
 ```json
 {
-  "test_cases": [
-    {
-      "id": "TC_001",
-      "title": "string",
-      "description": "string",
-      "pre_conditions": "string",
-      "steps": [
-        "1. Step one..."
-      ],
-      "expected_result": "string",
-      "type": "positive|negative|edge_case"
-    }
-  ],
-  "summary": "string"
+  "test_cases": "string", // Generated test cases in Markdown format
+  "status": "success" | "error",
+  "error_message": "string" | null, // Optional error details
+  "metadata": {
+    "model_used": "string",
+    "generation_time": "number" // Time in seconds
+  }
 }
 ```
 
 ## Behavioral Rules
-1. **Model**: STRICTLY use `llama3.2`.
-2. **Determinism**: Output must always follow the JSON schema.
-3. **Template**: Use a predefined "System Template" stored in code to guide the LLM.
-4. **Interface**: Modern, aesthetic Web UI (Chat interface).
+1. **Model**: strictly use `llama3.2` via Ollama.
+2. **Template**: Logic must use a pre-defined prompt template stored in the code to ensure consistent high-quality output.
+3. **UI**: Provide a Chat Interface for interaction.
+4. **Local Execution**: All processing must happen locally; no external API calls to cloud LLMs.
 
 ## Architectural Invariants
-1. **Data-First**: Schema compliance is mandatory.
-2. **Local-First**: All processing happens on localhost via Ollama.
-3. **3-Layer**: 
-    - `architecture/` (Prompt Templates & Logic)
-    - `tools/` (Ollama Client & Parsers)
-    - `ui/` (Frontend)
+- 3-layer architecture: Architecture -> Navigation -> Tools
+- Deterministic business logic.
+- Self-healing via "Self-Annealing" protocol.
